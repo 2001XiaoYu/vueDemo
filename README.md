@@ -1,6 +1,6 @@
 # 06_roomsource_demo
 这是一个展示房间列表的Demo
-![alt text](image.png)
+![效果图如下](./image.png)
 
 ## Project setup
 ```
