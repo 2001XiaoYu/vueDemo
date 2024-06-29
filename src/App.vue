@@ -1,23 +1,26 @@
 <template>
   <div class="app">
-    <!-- 1.区域header -->
-    <area-header :title="hightScore.title" :subtitle="hightScore.subtitle" />
-
-    <!-- 2.房间列表 -->
-    <div class="room-list">
-      <template v-for="item in hightScore.list" :key="item.id">
-        <room-item :item-data="item" />
-      </template>
-    </div>
+    <!-- 1.高评价 -->
+     <room-area :area-data="highScore"></room-area>
   </div>
 </template>
 
 <script setup>
-import AreaHeader from './components/AreaHeader'
-import RoomItem from './components/RoomItem.vue'
+import { ref } from 'vue'
+import RoomArea from './components/RoomArea.vue'
+
 //1.获取数据
-import hightScore from './data/high_score.json'
-// console.log(hightScore);
+// import highScore from './data/high_score.json'
+// console.log(highScore);
+
+//2.模拟网络请求数据
+const highScore = ref({})
+setTimeout(() => {
+  import("./data/high_score.json").then(res => {
+    console.log(res.default);
+    highScore.value = res.default
+  })
+}, 1000);
 
 
 </script>
@@ -29,9 +32,5 @@ import hightScore from './data/high_score.json'
   margin: 0 auto;
 }
 
-.room-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 10px -8px;
-}
+
 </style>
